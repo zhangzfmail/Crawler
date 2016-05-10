@@ -1,0 +1,23 @@
+from scrapy import Spider
+from scrapy.selector import Selector
+
+from stack.items import StackItem
+
+
+class StackSpider(Spider):
+    name = "stack"
+    allowed_domains = ["bambenekconsulting.com"]
+    start_urls = [
+        "http://osint.bambenekconsulting.com/feeds/c2-dommasterlist.txt",
+    ]
+
+    def parse(self, response):
+        questions = Selector(response).xpath('//pre')
+        text = str(questions)
+        lines = text.splitlines()
+
+        for line in lines:
+            item = StackItem()
+            item['domain'] = line[0]
+            item['time'] = line[2]
+            yield item
