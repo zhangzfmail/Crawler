@@ -65,6 +65,16 @@ NEWSPIDER_MODULE = 'stack.spiders'
 #    'stack.pipelines.SomePipeline': 300,
 #}
 
+ITEM_PIPELINES = {
+    'stack.pipelines.StackPipeline': 300,
+}
+
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "crawler"
+MONGODB_COLLECTION = "crawler_data"
+
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 # NOTE: AutoThrottle will honour the standard settings for concurrency and delay
